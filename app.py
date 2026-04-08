@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -16,6 +16,8 @@ def init_db():
             risk TEXT
         )
     ''')
+    conn.commit() 
+    conn.close()
 def insert_data(image_name, prediction, risk):
     conn = sqlite3.connect('food.db')
     cursor = conn.cursor()
@@ -30,8 +32,21 @@ def insert_data(image_name, prediction, risk):
 
 @app.route('/')
 def home():
-    insert_data("burger.jpg", "Burnt", "High")
-    return "Data inserted!"
+    if request.method == 'POST':
+        file = request.files['file']
+
+        if file:
+            filename = file.filename
+
+            # Dummy prediction (temporary)
+            prediction = "Burnt"
+            risk = "High"
+
+            insert_data(filename, prediction, risk)
+
+            return render_template('index.html', result=prediction, risk=risk)
+
+    return render_template('index.html')
 
 if __name__ == '__main__':
     init_db()
