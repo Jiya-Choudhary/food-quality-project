@@ -17,7 +17,7 @@ The goal of this project is to improve food safety awareness and help users make
 ## 🎯 Objectives
 
 * Detect food freshness using image processing
-* Identify cooking quality issues (burnt, over-fried, oily)
+* Identify cooking quality issues (Fresh , Burnt , Spoiled)
 * Classify food into multiple categories
 * Store results in a database
 * Provide health risk analysis
@@ -71,7 +71,7 @@ food-quality-project/
 ### 1️⃣ Clone Repository
 
 ```
-git clone https://github.com/your-username/food-quality-project.git
+git clone https://github.com/Jiya-Choudhary/food-quality-project.git
 cd food-quality-project
 ```
 
